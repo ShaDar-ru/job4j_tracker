@@ -9,28 +9,14 @@ public class BallStory {
 
         boolean escaped;
 
-        /**
-         * Если делать идентично тому, что в задании.
-         */
-        hare.eat(ball);
-        ball.run(hare);
-        wolf.eat(ball);
-        ball.run(wolf);
-        fox.eat(ball);
-        ball.run(fox);
-
-
-        /**
-         * Если добавить немного фантазии
-         */
-        hare.eat(ball);
-        escaped = ball.run(hare);
+        escaped = hare.eat(ball);
+        escaped = ball.run(escaped);
         System.out.println("ball escaped hare: " + escaped);
-        wolf.eat(ball);
-        escaped = ball.run(wolf);
+        escaped = wolf.eat(ball);
+        escaped = ball.run(escaped);
         System.out.println("ball escaped wolf: " + escaped);
-        fox.eat(ball);
-        escaped = ball.run(fox);
+        escaped = fox.eat(ball);
+        escaped = ball.run(escaped);
         System.out.println("ball escaped fox: " + escaped);
     }
 }
