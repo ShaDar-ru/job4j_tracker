@@ -4,6 +4,7 @@ public class Wolf {
     public void eat(Girl girl) {
     }
 
-    public void eat(Ball ball) {
+    public boolean eat(Ball ball) {
+        return false;
     }
 }
