@@ -11,4 +11,15 @@ public class Programmer extends Engineer{
     public int getPetprojects(){
         return petprojects;
     }
+
+    public Programmer(
+            String name,
+            String education,
+            int patents,
+            int projects,
+            String lang
+    ){
+        super(name, education, patents, projects);
+        this.lang = lang;
+    }
 }
