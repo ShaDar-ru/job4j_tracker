@@ -1,14 +1,20 @@
 package ru.job4j.prof;
 
-public class Engineer extends Profession{
+public class Engineer extends Profession {
     private int patents;
-    private int machines;
+    private int projects;
 
     public int getPatents() {
         return patents;
     }
 
-    public int getMachines() {
-        return machines;
+    public int getProjects() {
+        return projects;
+    }
+
+    public Engineer(String name, String education, int patents, int projects) {
+        super(name, education);
+        this.patents = patents;
+        this.projects = projects;
     }
 }

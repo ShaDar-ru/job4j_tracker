@@ -11,4 +11,15 @@ public class Doctor extends Profession {
     public String getSpeciality() {
         return speciality;
     }
+
+    public Doctor(
+            String name,
+            String education,
+            int patients,
+            String speciality
+    ) {
+        super(name, education);
+        this.patients = patients;
+        this.speciality = speciality;
+    }
 }
