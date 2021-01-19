@@ -7,14 +7,6 @@ public class Builder extends Engineer {
         return height;
     }
 
-    public boolean build() {
-
-    }
-
-    public boolean strongBuild() {
-
-    }
-
     public Builder(
             String name,
             String education,

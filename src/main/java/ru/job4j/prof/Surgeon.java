@@ -12,12 +12,6 @@ public class Surgeon extends Doctor {
         return doping;
     }
 
-    public String needDoping() {
-    }
-
-    public boolean operationIsGood() {
-    }
-
     public Surgeon(
             String name,
             String education,
