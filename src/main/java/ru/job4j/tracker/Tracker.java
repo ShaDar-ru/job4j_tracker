@@ -54,4 +54,54 @@ public class Tracker {
         items[a] = item;
         return true;
     }
+
+    public boolean delete(int id) {
+        int index = indexOf(id);
+        if (index != -1) {
+            System.arraycopy(
+                    items,
+                    index + 1,
+                    items,
+                    index,
+                    size - index);
+            items[size - 1] = null;
+            size--;
+        }
+        return index != -1;
+    }
+
+    public static void main(String[] args) {
+        Tracker tracker = new Tracker();
+        Item bug = new Item();
+        bug.setName("Bug");
+        tracker.add(bug);
+        Item bug2 = new Item();
+        bug2.setName("Bugged bug");
+        tracker.add(bug2);
+        int id = bug.getId();
+        int id2 = bug2.getId();
+        //print(tracker.items);
+        for (int i = 0; i < tracker.size; i++) {
+            System.out.println(tracker.items[i].getId() + " " + tracker.items[i].getName());
+        }
+        System.out.println();
+        tracker.add(bug);
+        tracker.add(bug);
+        tracker.add(bug);
+
+        for (int i = 0; i < tracker.size; i++) {
+            System.out.println(tracker.items[i].getId() + " " + tracker.items[i].getName());
+        }
+        /*
+        System.out.println();
+        tracker.delete(id);
+        for(int i=0;i< tracker.size;i++){
+            System.out.println(tracker.items[i].getId()+" "+tracker.items[i].getName());
+        }
+        System.out.println();
+        tracker.delete(id2);
+        for(int i=0;i< tracker.size;i++){
+            System.out.println(tracker.items[i].getId()+" "+tracker.items[i].getName());
+        }*/
+    }
 }
