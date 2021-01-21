@@ -54,4 +54,42 @@ public class Tracker {
         items[a] = item;
         return true;
     }
+
+    public boolean delete(int id) {
+        int index = indexOf(id);
+        if (index == -1) {
+            return false;
+        }
+        System.arraycopy(
+                items,
+                index + 1,
+                items,
+                size - 1,
+                size - index);
+        items[size-1]=null;
+        size--;
+        return true;
+    }
+
+    public static void print(Item[] items){
+        for(Item item : items){
+            System.out.println(item.getId()+" "+item.getName());
+        }
+    }
+
+    public static void main(String[] args) {
+        Tracker tracker = new Tracker();
+        Item bug = new Item();
+        bug.setName("Bug");
+        tracker.add(bug);
+        print(tracker.items);
+        Item bug2 = new Item();
+        bug2.setName("Bugged bug");
+        tracker.add(bug2);
+        print(tracker.items);
+        int id = bug.getId();
+        tracker.delete(id);
+        id = bug2.getId();
+        print(tracker.items);
+    }
 }
