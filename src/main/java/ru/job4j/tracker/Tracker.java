@@ -57,24 +57,17 @@ public class Tracker {
 
     public boolean delete(int id) {
         int index = indexOf(id);
-        if (index == -1) {
-            return false;
+        if (index != -1) {
+            System.arraycopy(
+                    items,
+                    index + 1,
+                    items,
+                    index,
+                    size - index);
+            items[size - 1] = null;
+            size--;
         }
-        System.arraycopy(
-                items,
-                index + 1,
-                items,
-                size - 1,
-                size - index);
-        items[size-1]=null;
-        size--;
-        return true;
-    }
-
-    public static void print(Item[] items){
-        for(Item item : items){
-            System.out.println(item.getId()+" "+item.getName());
-        }
+        return index != -1;
     }
 
     public static void main(String[] args) {
@@ -82,14 +75,33 @@ public class Tracker {
         Item bug = new Item();
         bug.setName("Bug");
         tracker.add(bug);
-        print(tracker.items);
         Item bug2 = new Item();
         bug2.setName("Bugged bug");
         tracker.add(bug2);
-        print(tracker.items);
         int id = bug.getId();
+        int id2 = bug2.getId();
+        //print(tracker.items);
+        for (int i = 0; i < tracker.size; i++) {
+            System.out.println(tracker.items[i].getId() + " " + tracker.items[i].getName());
+        }
+        System.out.println();
+        tracker.add(bug);
+        tracker.add(bug);
+        tracker.add(bug);
+
+        for (int i = 0; i < tracker.size; i++) {
+            System.out.println(tracker.items[i].getId() + " " + tracker.items[i].getName());
+        }
+        /*
+        System.out.println();
         tracker.delete(id);
-        id = bug2.getId();
-        print(tracker.items);
+        for(int i=0;i< tracker.size;i++){
+            System.out.println(tracker.items[i].getId()+" "+tracker.items[i].getName());
+        }
+        System.out.println();
+        tracker.delete(id2);
+        for(int i=0;i< tracker.size;i++){
+            System.out.println(tracker.items[i].getId()+" "+tracker.items[i].getName());
+        }*/
     }
 }
