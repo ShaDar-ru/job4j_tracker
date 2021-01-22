@@ -13,8 +13,7 @@ public class StartUI {
         Tracker tracker = new Tracker();
         tracker.add(item);
 
-        System.out.println(tracker.findById(item.getId()));
-        //Для проверки:
-        System.out.println(tracker.findById(item.getId()).getId());
+        System.out.println("переопределение метода toString():");
+        System.out.println(item);
     }
 }
