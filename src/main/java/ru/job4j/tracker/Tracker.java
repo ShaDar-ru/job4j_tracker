@@ -14,7 +14,7 @@ public class Tracker {
     }
 
     public Item findById(int id) {
-        int index = indexOf(id);
+        int index = this.indexOf(id);
         return index != -1 ? items[index] : null;
     }
 
@@ -46,28 +46,33 @@ public class Tracker {
     }
 
     public boolean replace(int id, Item item) {
-        int a = indexOf(id);
-        boolean rsl = a != -1;
-        if (rsl) {
+        int a = -1;
+        if (this.findById(id) != null) {
+            a = this.indexOf(id);
+        }
+        if (a != -1) {
             item.setId(id);
             items[a] = item;
         }
-        return rsl;
+        return a != -1;
     }
 
     public boolean delete(int id) {
-        int index = indexOf(id);
-        if (index != -1) {
+        int a = -1;
+        if (this.findById(id) != null) {
+            a = this.indexOf(id);
+        }
+        if (a != -1) {
             System.arraycopy(
                     items,
-                    index + 1,
+                    a + 1,
                     items,
-                    index,
-                    size - index);
+                    a,
+                    size - a);
             items[size - 1] = null;
             size--;
         }
-        return index != -1;
+        return a != -1;
     }
 
     public static void main(String[] args) {
@@ -92,16 +97,5 @@ public class Tracker {
         for (int i = 0; i < tracker.size; i++) {
             System.out.println(tracker.items[i].getId() + " " + tracker.items[i].getName());
         }
-        /*
-        System.out.println();
-        tracker.delete(id);
-        for(int i=0;i< tracker.size;i++){
-            System.out.println(tracker.items[i].getId()+" "+tracker.items[i].getName());
-        }
-        System.out.println();
-        tracker.delete(id2);
-        for(int i=0;i< tracker.size;i++){
-            System.out.println(tracker.items[i].getId()+" "+tracker.items[i].getName());
-        }*/
     }
 }
