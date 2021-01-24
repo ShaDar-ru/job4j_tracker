@@ -67,7 +67,7 @@ public class StartUI {
                     System.out.println("Введите имя искомой заявки: ");
                     String searchName = scanner.nextLine();
                     Item[] searchedItemsByName = tracker.findByName(searchName);
-                    if (searchedItemsByName != null) {
+                    if (searchedItemsByName.length>0) {
                         for (Item it : searchedItemsByName) {
                             System.out.println(it.toString());
                         }
