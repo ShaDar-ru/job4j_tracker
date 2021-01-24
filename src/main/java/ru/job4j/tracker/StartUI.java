@@ -8,7 +8,8 @@ public class StartUI {
         while (run) {
             this.showMenu();
             System.out.print("Select: ");
-            int select = this.getMenuPoint(scanner);
+            String str = scanner.nextLine();
+            int select = Integer.valueOf(str);
             switch (select) {
                 case 0:
                     System.out.println("=== Create a new Item ====");
@@ -81,25 +82,6 @@ public class StartUI {
                     break;
             }
         }
-    }
-
-    private int getMenuPoint(Scanner scanner) {
-        int select = -1;
-        String str = "";
-        while (select < 0 || select > 6) {
-            try {
-                str = scanner.nextLine();
-                select = Integer.valueOf(str);
-            } catch (Exception e) {
-                //если оставить, то будет 2 строки текста выскакивать
-                //а иначе жалуется, что блок catch пустой
-//                System.out.println("Введите число от 0 до 6");
-            }
-            if (select < 0 || select > 6) {
-                System.out.println("Введите число от 0 до 6");
-            }
-        }
-        return select;
     }
 
     private void showMenu() {
