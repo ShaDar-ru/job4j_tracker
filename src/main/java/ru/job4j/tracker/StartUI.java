@@ -13,7 +13,9 @@ public class StartUI {
                 case 0:
                     System.out.println("=== Create a new Item ====");
                     System.out.print("Введите имя новой заявки: ");
-                    tracker.add(newItem(scanner, tracker));
+                    String nameNewItem = scanner.nextLine();
+                    Item newItem = new Item(nameNewItem);
+                    tracker.add(newItem);
                     break;
                 case 1:
                     System.out.println("=== Show all items ====");
@@ -25,9 +27,11 @@ public class StartUI {
                 case 2:
                     System.out.println("=== Edit Item ====");
                     System.out.println("Введите номер изменяемой заявки: ");
-                    int replaceId = getNum(scanner);
+                    String changedId = scanner.nextLine();
+                    int replaceId = Integer.valueOf(changedId);
                     System.out.println("Введите имя новой заявки: ");
-                    Item replacedItem = newItem(scanner, tracker);
+                    String nameRepItem = scanner.nextLine();
+                    Item replacedItem = new Item(nameRepItem);
                     if (tracker.replace(replaceId, replacedItem)) {
                         System.out.println("Replace success");
                     } else {
@@ -37,7 +41,8 @@ public class StartUI {
                 case 3:
                     System.out.println("=== Delete Item ====");
                     System.out.println("Введите номер удаляемой заявки: ");
-                    int deleteId = getNum(scanner);
+                    String searchIdStrDel = scanner.nextLine();
+                    int deleteId = Integer.valueOf(searchIdStrDel);
                     if (tracker.delete(deleteId)) {
                         System.out.println("Delete success");
                     } else {
@@ -47,7 +52,8 @@ public class StartUI {
                 case 4:
                     System.out.println("=== Find Item by Id ====");
                     System.out.println("Введите номер искомой заявки: ");
-                    int searchId = getNum(scanner);
+                    String searchIdStr = scanner.nextLine();
+                    int searchId = Integer.valueOf(searchIdStr);
                     Item searchedItemById = tracker.findById(searchId);
                     if (searchedItemById != null) {
                         System.out.println(searchedItemById.toString());
@@ -75,25 +81,6 @@ public class StartUI {
                     break;
             }
         }
-    }
-
-    private Item newItem(Scanner scanner, Tracker tracker) {
-        String name = scanner.nextLine();
-        return new Item(name);
-    }
-
-    private int getNum(Scanner scanner) {
-        String str;
-        int select = -1;
-        while (select == -1) {
-            try {
-                str = scanner.nextLine();
-                select = Integer.valueOf(str);
-            } catch (Exception e) {
-                System.out.println("Ошибка. Введите номер.");
-            }
-        }
-        return select;
     }
 
     private int getMenuPoint(Scanner scanner) {
