@@ -62,6 +62,20 @@ public class StartUITest {
     }
 
     @Test
+    public void whenReplaceItem() {
+        Tracker tracker = new Tracker();
+        Item item = new Item("new item");
+        tracker.add(item);
+        String[] answers = {
+                String.valueOf(item.getId()),
+                "replaced item"
+        };
+        StartUI.replaceItem(new StubInput(answers), tracker);
+        Item replaced = tracker.findById(item.getId());
+        assertThat(replaced.getName(), is("replaced item"));
+    }
+
+    @Test
     public void deleteItem2() {
         String[] answers = {"bug", "bug2", "bug3"};
         Input inp = new StubInput(answers);
@@ -77,6 +91,21 @@ public class StartUITest {
             if (exp.getId() != 2) {
                 assertThat(rsl[i].getName(), is(exp.getName()));
             }
+        }
+    }
+
+    @Test
+    public void whenDeleteItem() {
+        Tracker tracker = new Tracker();
+        Item item = new Item("Элемент, который будет удален");
+        tracker.add(item);
+        String[] answers = {
+                String.valueOf(item.getId())
+        };
+        StartUI.deleteItem(new StubInput(answers), tracker);
+        Item[] items = tracker.findAll();
+        for (Item it:items) {
+            assertThat(it, is(nullValue()));
         }
     }
 
