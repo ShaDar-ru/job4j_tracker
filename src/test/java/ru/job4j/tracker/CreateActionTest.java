@@ -1,0 +1,19 @@
+package ru.job4j.tracker;
+
+import org.junit.Test;
+
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.*;
+
+public class CreateActionTest {
+
+    @Test
+    public void execute() {
+        String[] answers = {"Тест добавления итема."};
+        Input input = new StubInput(answers);
+        Tracker tracker = new Tracker();
+        CreateAction create = new CreateAction();
+        create.execute(input, tracker);
+        assertThat(tracker.findAll()[0].getName(),is("Тест добавления итема."));
+    }
+}

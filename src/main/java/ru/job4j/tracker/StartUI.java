@@ -1,6 +1,25 @@
 package ru.job4j.tracker;
 
 public class StartUI {
+
+    public void init(Input input, Tracker tracker, UserAction[] actions) {
+        boolean run = true;
+        while (run) {
+            this.showMenu(actions);
+            int select = input.askInt("Select: ");
+            UserAction action = actions[select];
+            run = action.execute(input, tracker);
+        }
+    }
+
+    private void showMenu(UserAction[] actions) {
+        System.out.println("Menu.");
+        for (int index = 0; index < actions.length; index++) {
+            System.out.println(index + ". " + actions[index].name());
+        }
+    }
+
+    @Deprecated
     public void init(Input input, Tracker tracker) {
         boolean run = true;
         while (run) {
@@ -35,6 +54,7 @@ public class StartUI {
         }
     }
 
+    @Deprecated
     public static void createItem(Input input, Tracker tracker) {
         System.out.println("=== Create a new Item ====");
         String nameNewItem = input.askStr("Введите имя новой заявки: ");
@@ -42,6 +62,7 @@ public class StartUI {
         tracker.add(newItem);
     }
 
+    @Deprecated
     public static void showAllItems(Tracker tracker) {
         System.out.println("=== Show all items ====");
         Item[] allItems = tracker.findAll();
@@ -50,6 +71,7 @@ public class StartUI {
         }
     }
 
+    @Deprecated
     public static void replaceItem(Input input, Tracker tracker) {
         System.out.println("=== Edit Item ====");
         String changedId = input.askStr("Введите номер изменяемой заявки: ");
@@ -63,6 +85,7 @@ public class StartUI {
         }
     }
 
+    @Deprecated
     public static void deleteItem(Input input, Tracker tracker) {
         System.out.println("=== Delete Item ====");
         String searchIdStrDel = input.askStr("Введите номер удаляемой заявки: ");
@@ -74,6 +97,7 @@ public class StartUI {
         }
     }
 
+    @Deprecated
     public static void findItemById(Input input, Tracker tracker) {
         System.out.println("=== Find Item by Id ====");
         String searchIdStr = input.askStr("Введите номер искомой заявки: ");
@@ -86,6 +110,7 @@ public class StartUI {
         }
     }
 
+    @Deprecated
     public static void findItemByName(Input input, Tracker tracker) {
         System.out.println("=== Find Item by Name ====");
         String searchName = input.askStr("Введите имя искомой заявки: ");
@@ -99,6 +124,7 @@ public class StartUI {
         }
     }
 
+    @Deprecated
     private void showMenu() {
         System.out.println("Menu.");
         System.out.println(
@@ -113,8 +139,18 @@ public class StartUI {
     }
 
     public static void main(String[] args) {
+
         Input input = new ConsoleInput();
         Tracker tracker = new Tracker();
-        new StartUI().init(input, tracker);
+        UserAction[] actions = {
+                new ShowAllAction(),
+                new CreateAction(),
+                new DeleteAction(),
+                new ReplaceAction(),
+                new FindByIdAction(),
+                new FindByNameAction(),
+                new ExitAction()
+        };
+        new StartUI().init(input, tracker, actions);
     }
 }
