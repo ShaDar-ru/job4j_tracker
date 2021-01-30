@@ -17,9 +17,9 @@ public class FindByIdAction implements UserAction{
         int searchId = input.askInt("Введите номер искомой заявки: ");
         Item searchedItemById = tracker.findById(searchId);
         if (searchedItemById != null) {
-            System.out.println(searchedItemById.toString());
+            out.println(searchedItemById.toString());
         } else {
-            System.out.println("Заявка с таким id не найдена");
+            out.println("Заявка с таким id не найдена");
         }
         return true;
     }

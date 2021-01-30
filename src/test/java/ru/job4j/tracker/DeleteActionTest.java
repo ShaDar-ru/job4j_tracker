@@ -9,19 +9,20 @@ import static org.hamcrest.Matchers.nullValue;
 import static org.junit.Assert.*;
 
 public class DeleteActionTest {
-    /*
+
     @Test
     public void execute() {
+        Output out = new ConsoleOutput();
         String[] answers = {"Тест удаления итема.", "1"};
         Input input = new StubInput(answers);
         Tracker tracker = new Tracker();
-        CreateAction create = new CreateAction();
+        CreateAction create = new CreateAction(out);
         create.execute(input, tracker);
-        DeleteAction delete = new DeleteAction();
+        DeleteAction delete = new DeleteAction(out);
         delete.execute(input, tracker);
         Item[] items = tracker.findAll();
         for (Item it:items) {
             assertThat(it, is(nullValue()));
         }
-    }*/
+    }
 }
