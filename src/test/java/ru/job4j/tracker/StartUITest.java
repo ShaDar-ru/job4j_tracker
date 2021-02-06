@@ -221,9 +221,10 @@ public class StartUITest {
     @Test
     public void whenInvalidExit() {
         Output out = new StubOutput();
-        Input in = new StubInput(
+        StubInput inStb = new StubInput(
                 new String[] { "-2", "0"}
         );
+        Input in = new ValidateInput(out, inStb);
         Tracker tracker = new Tracker();
         UserAction[] actions = {
                 new Exit(out)
