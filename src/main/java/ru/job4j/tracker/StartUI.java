@@ -40,7 +40,7 @@ public class StartUI {
                 new ReplaceAction(output),
                 new FindByIdAction(output),
                 new FindByNameAction(output),
-                new ExitAction(output)
+                new Exit(output)
         };
         new StartUI(output).init(input, tracker, actions);
     }
