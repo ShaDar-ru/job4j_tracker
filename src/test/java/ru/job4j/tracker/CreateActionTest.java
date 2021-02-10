@@ -12,9 +12,9 @@ public class CreateActionTest {
         Output out = new ConsoleOutput();
         String[] answers = {"Тест добавления итема."};
         Input input = new StubInput(answers);
-        Tracker tracker = new Tracker();
+        Tracker tracker = Tracker.getInstance();
         CreateAction create = new CreateAction(out);
         create.execute(input, tracker);
-        assertThat(tracker.findAll()[0].getName(),is("Тест добавления итема."));
+        assertThat(tracker.findAll()[0].getName(), is("Тест добавления итема."));
     }
 }

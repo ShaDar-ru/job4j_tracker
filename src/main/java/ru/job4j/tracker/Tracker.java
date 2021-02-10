@@ -2,10 +2,24 @@ package ru.job4j.tracker;
 
 import java.util.Arrays;
 
-public class Tracker {
+public final class Tracker {
+
+    private static Tracker instance = null;
+
     private final Item[] items = new Item[100];
+
     private int ids = 1;
     private int size = 0;
+
+    private Tracker() {
+    }
+
+    public static Tracker getInstance() {
+        if (instance == null) {
+            instance = new Tracker();
+        }
+        return instance;
+    }
 
     public Item add(Item item) {
         item.setId(ids++);
@@ -73,29 +87,5 @@ public class Tracker {
             size--;
         }
         return a != -1;
-    }
-
-    public static void main(String[] args) {
-        Tracker tracker = new Tracker();
-        Item bug = new Item();
-        bug.setName("Bug");
-        tracker.add(bug);
-        Item bug2 = new Item();
-        bug2.setName("Bugged bug");
-        tracker.add(bug2);
-        int id = bug.getId();
-        int id2 = bug2.getId();
-        //print(tracker.items);
-        for (int i = 0; i < tracker.size; i++) {
-            System.out.println(tracker.items[i].getId() + " " + tracker.items[i].getName());
-        }
-        System.out.println();
-        tracker.add(bug);
-        tracker.add(bug);
-        tracker.add(bug);
-
-        for (int i = 0; i < tracker.size; i++) {
-            System.out.println(tracker.items[i].getId() + " " + tracker.items[i].getName());
-        }
     }
 }

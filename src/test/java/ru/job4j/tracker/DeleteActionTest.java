@@ -15,7 +15,7 @@ public class DeleteActionTest {
         Output out = new ConsoleOutput();
         String[] answers = {"Тест удаления итема.", "1"};
         Input input = new StubInput(answers);
-        Tracker tracker = new Tracker();
+        Tracker tracker = Tracker.getInstance();
         CreateAction create = new CreateAction(out);
         create.execute(input, tracker);
         DeleteAction delete = new DeleteAction(out);
