@@ -11,9 +11,6 @@ public final class Tracker {
 
     private int ids = 1;
 
-    //private Tracker() {
-    //}
-
     public static Tracker getInstance() {
         if (instance == null) {
             instance = new Tracker();
@@ -36,8 +33,8 @@ public final class Tracker {
         return new ArrayList<>(items);
     }
 
-    public ArrayList<Item> findByName(String key) {
-        ArrayList<Item> itemsWithName = new ArrayList<>();
+    public List<Item> findByName(String key) {
+        List<Item> itemsWithName = new ArrayList<>();
         for (Item item : items) {
             if (item.getName().equals(key)) {
                 itemsWithName.add(item);
@@ -48,9 +45,9 @@ public final class Tracker {
 
     private int indexOf(int id) {
         int rsl = -1;
-        for (Item item : items) {
-            if (item.getId() == id) {
-                rsl = items.indexOf(item);
+        for (int i = 0; i < items.size(); i++) {
+            if (items.get(i).getId() == id) {
+                rsl = i;
                 break;
             }
         }
@@ -58,23 +55,16 @@ public final class Tracker {
     }
 
     public boolean replace(int id, Item item) {
-        int a = -1;
-        if (this.findById(id) != null) {
-            a = this.indexOf(id);
-        }
+        int a = this.indexOf(id);
         if (a != -1) {
             item.setId(id);
-            items.remove(a);
-            items.add(a, item);
+            items.set(a, item);
         }
         return a != -1;
     }
 
     public boolean delete(int id) {
-        int a = -1;
-        if (this.findById(id) != null) {
-            a = this.indexOf(id);
-        }
+        int a = this.indexOf(id);
         if (a != -1) {
             items.remove(a);
         }
