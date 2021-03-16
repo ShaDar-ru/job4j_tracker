@@ -40,8 +40,8 @@ public class StringTest {
 
     static char[] getChars(char[] chars) {
         ArrayList<Character> characters = new ArrayList<>();
-        int count = 0;
-        char[] temp = new char[chars.length];
+        int count;
+        char[] temp;
         char[] rsl;
         for (int i = 0; i < chars.length; i++) {
             if (!Character.isDigit(chars[i])) {
