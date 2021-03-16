@@ -4,6 +4,8 @@ import org.hamcrest.core.Is;
 import org.junit.Test;
 import org.w3c.dom.ls.LSOutput;
 
+import java.util.ArrayList;
+
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.nullValue;
 import static org.junit.Assert.*;
@@ -20,7 +22,7 @@ public class DeleteActionTest {
         create.execute(input, tracker);
         DeleteAction delete = new DeleteAction(out);
         delete.execute(input, tracker);
-        Item[] items = tracker.findAll();
+        ArrayList<Item>  items = (ArrayList<Item>) tracker.findAll();
         for (Item it:items) {
             assertThat(it, is(nullValue()));
         }
