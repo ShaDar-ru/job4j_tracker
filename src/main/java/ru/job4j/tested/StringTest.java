@@ -71,7 +71,7 @@ public class StringTest {
     }
 
     public static void main(String[] args) {
-        String s = "4[x3[y]]";
+        String s = "4[x3[y]]a1[o]2[z]";
         System.out.println(getChars(s.toCharArray()));
     }
 }
