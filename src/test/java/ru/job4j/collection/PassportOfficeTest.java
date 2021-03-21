@@ -18,20 +18,10 @@ public class PassportOfficeTest {
     }
 
     @Test
-    public void get() {
+    public void addDuplicate() {
         Citizen citizen = new Citizen("1212a0", "Oleg Mihailov");
-        Citizen[] citizens = new Citizen[]{
-                new Citizen("1212aa", "Vasya Vasiliev"),
-                new Citizen("1212a1", "Misha Vasiliev"),
-                new Citizen("1212a2", "Tolya Vasiliev"),
-                new Citizen("1212a3", "Sasha Vasiliev"),
-                new Citizen("1212a4", "Dima Vasiliev"),
-                citizen
-        };
         PassportOffice office = new PassportOffice();
-        for(Citizen cz : citizens){
-            office.add(cz);
-        }
-        assertThat(office.get("1212a0"),is(citizen));
+        office.add(citizen);
+        assertFalse(office.add(citizen));
     }
 }
