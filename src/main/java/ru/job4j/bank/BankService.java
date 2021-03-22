@@ -25,45 +25,50 @@ public class BankService {
 
     public void addAccount(String passport, Account account) {
         User searchedUser = findByPassport(passport);
-        users.get(searchedUser).add(account);
+        if (searchedUser != null) {
+            if (!users.get(searchedUser).contains(account)) {
+                users.get(searchedUser).add(account);
+            }
+        }
     }
 
     public User findByPassport(String passport) {
         User rsl = null;
-        for (Map.Entry<User, List<Account>> usrs : users.entrySet()) {
-            if (usrs.getKey().getPassport().equals(passport)) {
-                rsl = usrs.getKey();
+        for (User usersKey : users.keySet()) {
+            if (usersKey.getPassport().equals(passport)) {
+                rsl = usersKey;
+                break;
             }
         }
         return rsl;
     }
 
     public Account findByRequisite(String passport, String requisite) {
-        Account rsl = null;
         User searchedUser = findByPassport(passport);
-        for (Map.Entry<User, List<Account>> usrs : users.entrySet()) {
-            if (usrs.getKey().equals(searchedUser)) {
-                for (Account acc : usrs.getValue()) {
-                    if (acc.getRequisite().equals(requisite)) {
-                        rsl = acc;
-                    }
+        if (searchedUser != null) {
+            List<Account> accounts = users.get(searchedUser);
+            for (Account acc : accounts) {
+                if (acc.getRequisite().equals(requisite)) {
+                    return acc;
                 }
             }
         }
-        return rsl;
+        return null;
     }
 
     public boolean transferMoney(String srcPassport, String srcRequisite,
                                  String destPassport, String destRequisite, double amount) {
         Account srcAcc = findByRequisite(srcPassport, srcRequisite);
         Account destAcc = findByRequisite(destPassport, destRequisite);
-        if (srcAcc.getBalance() < amount) {
+        if (srcAcc == null || destAcc == null) {
             return false;
-        } else {
+        }
+        if (srcAcc.getBalance() >= amount) {
             srcAcc.setBalance(srcAcc.getBalance() - amount);
             destAcc.setBalance(destAcc.getBalance() + amount);
             return true;
         }
+        return false;
     }
 
     public static void main(String[] args) {
