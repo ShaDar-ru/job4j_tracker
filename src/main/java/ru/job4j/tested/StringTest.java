@@ -1,6 +1,7 @@
 package ru.job4j.tested;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class StringTest {
@@ -69,20 +70,5 @@ public class StringTest {
             }
         }
         return rsl;
-    }
-
-    public static void main(String[] args) {
-        //String s = "4[x3[y]]a1[o]2[z]";
-        //System.out.println(getChars(s.toCharArray()));
-        List<String> a = null;
-        System.out.println(a == null);
-        a = new ArrayList<>();
-        System.out.println(a.isEmpty() + " " + (a == null));
-        a.add("");
-        for (String s : a) {
-            System.out.println(s + "," + s.isEmpty() + "," + (s == null));
-        }
-        String[] str = new String[2];
-        System.out.println(str[0] +","+(str[0]==null));
     }
 }
