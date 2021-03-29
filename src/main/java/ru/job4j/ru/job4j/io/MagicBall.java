@@ -12,12 +12,27 @@ public class MagicBall {
 
     }
 
-    public static String answer(){
-        return (switch (new Random().nextInt(3)) {
-            case 0 ->"Да";
-            case 1 ->"Нет";
+    public static String answer() {
+        /*return (switch (new Random().nextInt(3)) {
+            case 0 -> "Да";
+            case 1 -> "Нет";
             default -> "Может быть";
-            }
-            );
+        }
+        );
+        */
+        int a = new Random().nextInt(3);
+        String rsl = "";
+        switch (a) {
+            case 0:
+                rsl = "Да";
+                break;
+            case 1:
+                rsl = "Нет";
+                break;
+            default:
+                rsl = "Может быть";
+                break;
+        }
+        return rsl;
     }
 }

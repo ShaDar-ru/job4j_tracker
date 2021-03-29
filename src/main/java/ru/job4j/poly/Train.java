@@ -1,15 +1,15 @@
 package ru.job4j.poly;
 
 public class Train implements Vehicle {
+    final private String name = "Поезд";
     private String nextLandingSite;
-    final String name = "Поезд";
 
-    public Train(String nextLandingSite){
+    public Train(String nextLandingSite) {
         this.nextLandingSite = nextLandingSite;
     }
 
-    public void setNextLandingSite(String s){
-        this.nextLandingSite=s;
+    public void setNextLandingSite(String s) {
+        this.nextLandingSite = s;
     }
 
     @Override
@@ -19,6 +19,7 @@ public class Train implements Vehicle {
 
     @Override
     public void move() {
-        System.out.println("Внимаение! Двери закрываются, следующая станция " + this.nextLandingSite);
+        System.out.println("Внимаение! Двери закрываются, следующая станция "
+                + this.nextLandingSite);
     }
 }

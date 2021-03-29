@@ -1,7 +1,7 @@
 package ru.job4j.poly;
 
 public class Bus implements Vehicle {
-    final String name = "Автобус";
+    final private String name = "Автобус";
 
     @Override
     public String getName() {

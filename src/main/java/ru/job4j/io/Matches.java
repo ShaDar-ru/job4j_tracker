@@ -29,8 +29,8 @@ public class Matches {
         Scanner in = new Scanner(System.in);
         String str = in.nextLine();
         while (str.trim().isEmpty()) {
-            System.out.println("Ошибка ввода. Нельзя пропускать ход." +
-                    System.lineSeparator() + "Введите число от 1 до 3:");
+            System.out.println("Ошибка ввода. Нельзя пропускать ход."
+                    + System.lineSeparator() + "Введите число от 1 до 3:");
             str = in.nextLine();
         }
         return str;

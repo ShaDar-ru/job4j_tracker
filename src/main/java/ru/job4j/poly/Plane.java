@@ -1,7 +1,7 @@
 package ru.job4j.poly;
 
 public class Plane implements Vehicle {
-    final String name = "Самолет";
+    final private String name = "Самолет";
 
     @Override
     public String getName() {

@@ -5,13 +5,12 @@ public class JSONReport extends TextReport {
     public String generate(String name, String body) {
         char start = 123;
         char end = 125;
-        return '{' +
-                System.lineSeparator() +
-                "\t" + "\"name\" : " + "\"" + name + "\"" +
-                System.lineSeparator() +
-                "\t" + "\"body\" : " + "\"" + body + "\"" +
-                System.lineSeparator() +
-                '}';
+        return '{'
+                + System.lineSeparator()
+                + "\t" + "\"name\" : " + "\"" + name + "\""
+                + System.lineSeparator()
+                + "\t" + "\"body\" : " + "\"" + body + "\""
+                + System.lineSeparator() + '}';
     }
 
     public static void main(String[] args) {

@@ -15,7 +15,8 @@ import static org.junit.Assert.*;
 public class JobTest {
     @Test
     public void whenCompatorByNameAndPrority() {
-        Comparator<Job> cmpNamePriority = new JobDescByName().thenComparing(new JobDescByPriority());
+        Comparator<Job> cmpNamePriority = new JobDescByName()
+                .thenComparing(new JobDescByPriority());
         int rsl = cmpNamePriority.compare(
                 new Job("Impl task", 0),
                 new Job("Fix bug", 1)
@@ -25,7 +26,8 @@ public class JobTest {
 
     @Test
     public void whenDescByNameAndPriority() {
-        Comparator<Job> cmpNamePriority = new JobDescByName().thenComparing(new JobCompByPriority());
+        Comparator<Job> cmpNamePriority = new JobDescByName()
+                .thenComparing(new JobCompByPriority());
         int rsl = cmpNamePriority.compare(
                 new Job("One", 0),
                 new Job("One", 1)
@@ -35,7 +37,8 @@ public class JobTest {
 
     @Test
     public void whenCompByNameAndDescPriorityThenOneLess() {
-        Comparator<Job> cmpNameDescPriority = new JobCompByName().thenComparing(new JobDescByPriority());
+        Comparator<Job> cmpNameDescPriority = new JobCompByName()
+                .thenComparing(new JobDescByPriority());
         int rsl = cmpNameDescPriority.compare(
                 new Job("One1", 1),
                 new Job("One2", 2)
@@ -45,7 +48,8 @@ public class JobTest {
 
     @Test
     public void whenCompByNameAndDescPriorityThenTwoLess() {
-        Comparator<Job> cmpNameDescPriority = new JobCompByName().thenComparing(new JobDescByPriority());
+        Comparator<Job> cmpNameDescPriority = new JobCompByName()
+                .thenComparing(new JobDescByPriority());
         int rsl = cmpNameDescPriority.compare(
                 new Job("One", 1),
                 new Job("One", 2)
@@ -55,7 +59,8 @@ public class JobTest {
 
     @Test
     public void whenDescByNameAndCompPriority() {
-        Comparator<Job> cmpNameDescPriority = new JobCompByName().thenComparing(new JobDescByPriority());
+        Comparator<Job> cmpNameDescPriority = new JobCompByName()
+                .thenComparing(new JobDescByPriority());
         int rsl = cmpNameDescPriority.compare(
                 new Job("One1", 1),
                 new Job("One2", 2)

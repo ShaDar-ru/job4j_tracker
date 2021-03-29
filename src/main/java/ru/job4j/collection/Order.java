@@ -22,17 +22,21 @@ public class Order {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
         Order order = (Order) obj;
         return Objects.equals(number, order.number) && Objects.equals(name, order.name);
     }
 
     @Override
     public String toString() {
-        return "Order{" +
-                "number='" + number + '\'' +
-                ", name='" + name + '\'' +
-                '}';
+        return "Order{"
+                + "number='" + number + '\''
+                + ", name='" + name + '\''
+                + '}';
     }
 }

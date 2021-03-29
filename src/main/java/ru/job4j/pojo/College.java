@@ -14,10 +14,9 @@ public class College {
         vasya.getInfo();
         System.out.println();
         //идентично
-        System.out.println(
-                vasya.getFio() + System.lineSeparator() +
-                        vasya.getGroup() + System.lineSeparator() +
-                        vasya.getDate()
+        System.out.println(vasya.getFio() + System.lineSeparator()
+                + vasya.getGroup() + System.lineSeparator()
+                + vasya.getDate()
         );
     }
 }
