@@ -1,12 +1,24 @@
 package ru.job4j.tracker;
 
+import org.junit.Before;
 import org.junit.Test;
+
+import java.util.ArrayList;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.core.IsNull.nullValue;
 
 public class TrackerTest {
+    @Before
+    public void clear() {
+        Tracker tracker = Tracker.getInstance();
+        ArrayList<Item> all = (ArrayList<Item>) tracker.findAll();
+        for (Item it : all) {
+            tracker.delete(it.getId());
+        }
+    }
+
     @Test
     public void whenAddNewItemThenTrackerHasSameItem() {
         Tracker tracker = Tracker.getInstance();

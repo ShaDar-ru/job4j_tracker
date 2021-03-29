@@ -1,6 +1,7 @@
 package ru.job4j.tracker;
 
 import org.hamcrest.core.Is;
+import org.junit.Before;
 import org.junit.Test;
 import org.w3c.dom.ls.LSOutput;
 
@@ -11,19 +12,26 @@ import static org.hamcrest.Matchers.nullValue;
 import static org.junit.Assert.*;
 
 public class DeleteActionTest {
+    @Before
+    public void clear() {
+        Tracker tracker = Tracker.getInstance();
+        ArrayList<Item> all = (ArrayList<Item>) tracker.findAll();
+        for (Item it : all) {
+            tracker.delete(it.getId());
+        }
+    }
 
     @Test
     public void execute() {
         Output out = new ConsoleOutput();
-        String[] answers = {"Тест удаления итема.", "1"};
-        Input input = new StubInput(answers);
         Tracker tracker = Tracker.getInstance();
-        CreateAction create = new CreateAction(out);
-        create.execute(input, tracker);
+        Item item = tracker.add(new Item("Deleted item"));
+        String[] answers = {Integer.toString(item.getId())};
+        Input input = new StubInput(answers);
         DeleteAction delete = new DeleteAction(out);
         delete.execute(input, tracker);
-        ArrayList<Item>  items = (ArrayList<Item>) tracker.findAll();
-        for (Item it:items) {
+        ArrayList<Item> items = (ArrayList<Item>) tracker.findAll();
+        for (Item it : items) {
             assertThat(it, is(nullValue()));
         }
     }

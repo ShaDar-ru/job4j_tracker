@@ -1,13 +1,23 @@
 package ru.job4j.tracker;
 
+import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
 
 public class ShowAllActionTest {
+    @Before
+    public void clear() {
+        Tracker tracker = Tracker.getInstance();
+        ArrayList<Item> all = (ArrayList<Item>) tracker.findAll();
+        for (Item it : all) {
+            tracker.delete(it.getId());
+        }
+    }
 
     @Test
     public void execute() {
