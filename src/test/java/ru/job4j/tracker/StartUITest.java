@@ -85,11 +85,11 @@ public class StartUITest {
         1. Exit
         */
     @Test
-    public void wheDeleted() {
-        Input in = new StubInput(new String[]{"0", "1", "1"});
-        Output out = new StubOutput();
+    public void whenDeleted() {
         Tracker tracker = Tracker.getInstance();
         Item item = tracker.add(new Item("It will be deleted"));
+        Input in = new StubInput(new String[]{"0", Integer.toString(item.getId()), "1"});
+        Output out = new StubOutput();
         UserAction[] usAct = {
                 new DeleteAction(out),
                 new Exit(out)
@@ -104,7 +104,6 @@ public class StartUITest {
                         + "0. Delete Item" + nl
                         + "1. Exit" + nl
         ));
-
     }
 
     /*
