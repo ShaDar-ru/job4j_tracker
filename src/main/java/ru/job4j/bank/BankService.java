@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
 /**
  * Класс реализует банковские операции
  * @author Alex Terentev (ShaDar-ru)
