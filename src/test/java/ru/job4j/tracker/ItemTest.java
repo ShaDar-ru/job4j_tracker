@@ -29,7 +29,7 @@ public class ItemTest {
         List<Item> list = new ArrayList<>();
         list.add(a);
         list.add(b);
-        Comparator<Item> comp =new ItemSortComparator.RevertItemSortById();
+        Comparator<Item> comp = new ItemSortComparator.RevertItemSortById();
         Collections.sort(list, comp);
         assertThat(list.get(0), is(b));
     }
@@ -53,7 +53,7 @@ public class ItemTest {
         List<Item> list = new ArrayList<>();
         list.add(a);
         list.add(b);
-        Comparator<Item> comp =new ItemSortComparator.RevertItemSortByName();
+        Comparator<Item> comp = new ItemSortComparator.RevertItemSortByName();
         Collections.sort(list, comp);
         assertThat(list.get(0), is(b));
     }
