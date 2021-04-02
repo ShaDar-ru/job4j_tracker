@@ -1,10 +1,7 @@
 package ru.job4j.tracker;
 
 import org.junit.Test;
-import ru.job4j.tracker.comparators.RevertSortItemById;
-import ru.job4j.tracker.comparators.RevertSortItemByName;
-import ru.job4j.tracker.comparators.SortItemById;
-import ru.job4j.tracker.comparators.SortItemByName;
+import ru.job4j.tracker.comparators.*;
 
 import java.util.*;
 
@@ -20,7 +17,7 @@ public class ItemTest {
         List<Item> list = new ArrayList<>();
         list.add(a);
         list.add(b);
-        Comparator<Item> comp = new SortItemById();
+        Comparator<Item> comp = new ItemSortComparator.ItemSortById();
         Collections.sort(list, comp);
         assertThat(list.get(0), is(a));
     }
@@ -32,7 +29,7 @@ public class ItemTest {
         List<Item> list = new ArrayList<>();
         list.add(a);
         list.add(b);
-        Comparator<Item> comp = new RevertSortItemById();
+        Comparator<Item> comp =new ItemSortComparator.RevertItemSortById();
         Collections.sort(list, comp);
         assertThat(list.get(0), is(b));
     }
@@ -44,7 +41,7 @@ public class ItemTest {
         List<Item> list = new ArrayList<>();
         list.add(a);
         list.add(b);
-        Comparator<Item> comp = new SortItemByName();
+        Comparator<Item> comp = new ItemSortComparator.ItemSortByName();
         Collections.sort(list, comp);
         assertThat(list.get(0), is(a));
     }
@@ -56,7 +53,7 @@ public class ItemTest {
         List<Item> list = new ArrayList<>();
         list.add(a);
         list.add(b);
-        Comparator<Item> comp = new RevertSortItemByName();
+        Comparator<Item> comp =new ItemSortComparator.RevertItemSortByName();
         Collections.sort(list, comp);
         assertThat(list.get(0), is(b));
     }
