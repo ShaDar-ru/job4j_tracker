@@ -59,7 +59,6 @@ public class Departments {
         Collections.sort(orgs, new DepDescComp());
     }
 
-
     /**
      * Внутренний статический класс-компаратор. Применяется для
      * сложной проверки, в обратном порядке:
