@@ -7,7 +7,7 @@ import java.util.*;
  * @version 1.0
  * @date 05.04.2021
  */
-public class Departments {
+public class DepartmentsOld {
 
     /**
      * Метод преобразует входной лист, дополняя отсутствующие
@@ -50,7 +50,7 @@ public class Departments {
     }
 
     /**
-     * Сортировка со сложной иерархией, использует компаратор
+     * Сортировка со сложной иерархией, использует компаратор DepDescComp
      *
      * @param orgs List с входными данными
      * @see DepDescComp
