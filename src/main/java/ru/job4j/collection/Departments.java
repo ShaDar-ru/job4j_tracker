@@ -47,44 +47,4 @@ public class Departments {
     public static void sortDesc(List<String> orgs) {
         Collections.sort(orgs, new DepDescComp());
     }
-
-    /**
-     * Внутренний статический класс-компаратор. Применяется для
-     * сложной проверки, в обратном порядке:
-     * - Сперва сравниваются супер-подразделения, в обратном порядке;
-     * - После сравниваются подразделения и под-подразделения,
-     * в порядке возрастания.
-     */
-    public static class DepDescComp implements Comparator<String> {
-        @Override
-        public int compare(String o1, String o2) {
-            String[] o1Arr = o1.split("/");
-            String[] o2Arr = o2.split("/");
-            int lnth = Math.min(o1Arr.length, o2Arr.length);
-            int tmp = 0;
-            for (int i = 0; i < lnth; i++) {
-                if (i == 0) {
-                    tmp = o2Arr[i].compareTo(o1Arr[i]);
-                    if (tmp != 0) {
-                        break;
-                    }
-                }
-                if (i > 0) {
-                    tmp = o1Arr[i].compareTo(o2Arr[i]);
-                    if (tmp != 0) {
-                        break;
-                    }
-                }
-            }
-            if (tmp == 0) {
-                if (o1Arr.length > o2Arr.length) {
-                    tmp = 1;
-                }
-                if (o1Arr.length < o2Arr.length) {
-                    tmp = -1;
-                }
-            }
-            return tmp;
-        }
-    }
 }

@@ -55,7 +55,7 @@ public class DepartmentsTest {
                 "k2", "k2/sk1", "k2/sk1/ssk1", "k2/sk1/ssk1/sssk1", "k2/sk2", "k1", "k1/sk1"
         );
         List<String> rsl = Departments.fillGaps(input);
-        DepartmentsOld.sortDesc(rsl);
+        Departments.sortDesc(rsl);
         assertThat(rsl, is(expect));
     }
 
@@ -69,7 +69,7 @@ public class DepartmentsTest {
                 "k2/sk1/ssk1", "k2/sk1/ssk1/sssk1", "k2/sk2"
         );
         List<String> rsl = Departments.fillGaps(input);
-        DepartmentsOld.sortAsc(rsl);
+        Departments.sortAsc(rsl);
         assertThat(rsl, is(expect));
     }
 
@@ -83,7 +83,7 @@ public class DepartmentsTest {
 
     @Test
     public void compare() {
-        int rsl = new Departments.DepDescComp().compare(
+        int rsl = new DepDescComp().compare(
                 "K2/SK1/SSK2",
                 "K2/SK1/SSK1"
         );
@@ -92,7 +92,7 @@ public class DepartmentsTest {
 
     @Test
     public void whenUpDepartmentGoBefore() {
-        int rsl = new Departments.DepDescComp().compare(
+        int rsl = new DepDescComp().compare(
                 "K2",
                 "K2/SK1"
         );
@@ -101,7 +101,7 @@ public class DepartmentsTest {
 
     @Test
     public void whenVariousDepartments() {
-        int rsl = new Departments.DepDescComp().compare(
+        int rsl = new DepDescComp().compare(
                 "K1",
                 "K2/SK1"
         );
@@ -110,7 +110,7 @@ public class DepartmentsTest {
 
     @Test
     public void whenVariousDepartmentsAndSubDepartments() {
-        int rsl = new Departments.DepDescComp().compare(
+        int rsl = new DepDescComp().compare(
                 "K1/SK2",
                 "K2/SK1"
         );
