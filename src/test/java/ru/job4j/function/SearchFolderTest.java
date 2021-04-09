@@ -5,6 +5,7 @@ import org.junit.Test;
 import java.util.List;
 import java.util.function.Predicate;
 
+import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
 /**
@@ -24,6 +25,7 @@ public class SearchFolderTest {
         List<Folder> expected = List.of(new Folder("fix", 110));
         Predicate<Folder> pred = f -> f.getSize() > 100;
         List<Folder> rsl = SearchFolder.filter(list, pred);
+        assertThat(rsl, is(expected));
     }
 
     @Test
@@ -38,5 +40,6 @@ public class SearchFolderTest {
                 new Folder("bug", 90));
         Predicate<Folder> pred = f -> f.getName().contains("bug");
         List<Folder> rsl = SearchFolder.filter(list, pred);
+        assertThat(rsl, is(expected));
     }
 }
