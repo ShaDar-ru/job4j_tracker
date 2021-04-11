@@ -70,23 +70,4 @@ public class StringTest {
         return rsl;
     }
 
-    Comparator<String> cmpText = (left, right) -> left.compareTo(right);
-
-    Comparator<String> cmpDescSize = (left, right) -> Integer.compare(left.length(), right.length());
-
-    public static void main(String[] args) {
-        Comparator<String> cmpDescSize = (left, right) -> Integer.compare(right.length(), left.length());
-        String a = "Аа";
-        String b = "aaa";
-        List<String> s = new ArrayList<>();
-        s.add(a);
-        s.add(b);
-        Collections.sort(s,cmpDescSize);
-        for(String s1 : s){
-            System.out.println(s1);
-        }
-        Comparator<String> cmpText = (left, right) -> left.compareTo(right);
-        Collections.sort(s,cmpText);
-        System.out.println(s);
-    }
 }
