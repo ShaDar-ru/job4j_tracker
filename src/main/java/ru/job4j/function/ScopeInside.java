@@ -12,7 +12,7 @@ public class ScopeInside {
         int[] number = {1, 2, 3};
         int total = 0;
         for (int i = 0; i < number.length; i++) {
-            int num = i;
+            int num = number[i];
             int totalFinal = total;
             total = add(
                     () -> totalFinal + num
