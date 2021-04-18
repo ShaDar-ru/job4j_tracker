@@ -21,8 +21,8 @@ public class Profile {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Profile p = (Profile) o;
-        return this.address == p.address;
+        Profile profile = (Profile) o;
+        return address.equals(profile.address);
     }
 
     @Override

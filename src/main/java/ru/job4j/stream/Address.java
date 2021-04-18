@@ -31,6 +31,20 @@ public class Address {
         return apartment;
     }
 
+    public int compareTo(Address address) {
+        int rsl = city.compareTo(address.city);
+        if (rsl == 0) {
+            rsl = street.compareTo(address.street);
+        }
+        if (rsl == 0) {
+            rsl = Integer.compare(home, address.home);
+        }
+        if (rsl == 0) {
+            rsl = Integer.compare(apartment, address.apartment);
+        }
+        return rsl;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
