@@ -13,10 +13,14 @@ public class Profiles {
     }*/
 
     public List<Address> collect(List<Profile> profiles) {
+        Comparator<Address> comp = Comparator.comparing(Address::getCity)
+                .thenComparing(Address::getStreet)
+                .thenComparing(Address::getHome)
+                .thenComparing(Address::getApartment);
         return profiles.stream()
-                .sorted((o1, o2) -> o1.getAddress().compareTo(o2.getAddress()))
-                .distinct()
                 .map(Profile::getAddress)
+                .sorted(comp)
+                .distinct()
                 .collect(Collectors.toList());
     }
 }
