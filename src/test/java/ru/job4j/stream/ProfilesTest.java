@@ -62,8 +62,8 @@ public class ProfilesTest {
         List<Address> result = pr.collect(profiles);
         List<Address> expect = List.of(
                 new Address("Msc", "Moscovskaya", 12, 52),
-                new Address("Spb", "Mayakovskaya", 22, 23),
-                new Address("Spb", "Mayakovskaya", 22, 25)
+                new Address("Spb", "Mayakovskaya", 22, 25),
+                new Address("Spb", "Mayakovskaya", 22, 23)
         );
         assertThat(result, is(expect));
     }
