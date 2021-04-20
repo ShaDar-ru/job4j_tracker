@@ -12,7 +12,7 @@ public class School {
                 .collect(Collectors.toMap(
                         e -> e.getSurname(),
                         e -> e,
-                        (a, b) -> a.equals(b) ? a : b
+                        (a, b) -> a
                 ));
     }
 }
