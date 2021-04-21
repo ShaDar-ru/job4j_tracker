@@ -14,9 +14,7 @@ import java.util.stream.Stream;
  */
 public class MatrixToListUsage {
     public List<Integer> convert(Integer[][] matrix) {
-        return Stream.of(Arrays.asList(Arrays.asList(matrix)))
-                .flatMap(Collection::stream)
-                .flatMap(Collection::stream)
+        return Stream.of(matrix)
                 .flatMap(Arrays::stream)
                 .collect(Collectors.toList());
     }
