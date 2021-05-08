@@ -7,6 +7,7 @@ import java.util.Map;
 
 /**
  * Класс реализует банковские операции
+ *
  * @author Alex Terentev (ShaDar-ru)
  * @version 1.0
  */
@@ -19,6 +20,7 @@ public class BankService {
     /**
      * Метод добавляет пользователя к HashMap
      * и генерирует 2й атрибут в виде ArrayList
+     *
      * @param user - входящий пользователь
      */
     public void addUser(User user) {
@@ -29,10 +31,11 @@ public class BankService {
      * Метод ищет пользователя по паспорту, и
      * если хранилище содержит пасспорт, но не содержит
      * текущий аккаунт, то добавляет его.
+     *
      * @param passport - пасспорт, по котором
-     * ищут пользователя
-     * @param account - аккаунт, который добавляется
-     * в хранилище.
+     *                 ищут пользователя
+     * @param account  - аккаунт, который добавляется
+     *                 в хранилище.
      */
     public void addAccount(String passport, Account account) {
         User searchedUser = findByPassport(passport);
@@ -47,42 +50,40 @@ public class BankService {
      * Метод реализует поиск по хранилищу,
      * проверяя, существует ли пользователь
      * с пасспортом, принимаемым в метод
+     *
      * @param passport - паспорт пользователя,
-     * по которому осуществляется поиск.
+     *                 по которому осуществляется поиск.
      * @return возвращает Пользователя,
      * из хранилища или null если паспорта
      * нет в хранилище
      */
     public User findByPassport(String passport) {
-        User rsl = null;
-        for (User usersKey : users.keySet()) {
-            if (usersKey.getPassport().equals(passport)) {
-                rsl = usersKey;
-                break;
-            }
-        }
-        return rsl;
+        return users.keySet()
+                .stream()
+                .filter(u -> u.getPassport().equals(passport))
+                .findFirst()
+                .orElse(null);
     }
 
     /**
      * Метод поиска Аккаунта по паспорту и реквизитам,
      * если найдейнный user не null
-     * @param passport - пассорт по которому производится
-     * поиск пользователя
+     *
+     * @param passport  - пассорт по которому производится
+     *                  поиск пользователя
      * @param requisite - реквизиты, по которым происходит
-     * поиск аккаунта
+     *                  поиск аккаунта
      * @return аккаунт, содержащий в себе входящие реквизиты,
      * либо null
      */
     public Account findByRequisite(String passport, String requisite) {
         User searchedUser = findByPassport(passport);
         if (searchedUser != null) {
-            List<Account> accounts = users.get(searchedUser);
-            for (Account acc : accounts) {
-                if (acc.getRequisite().equals(requisite)) {
-                    return acc;
-                }
-            }
+            return users.get(searchedUser)
+                    .stream()
+                    .filter(acc -> acc.getRequisite().equals(requisite))
+                    .findFirst()
+                    .orElse(null);
         }
         return null;
     }
@@ -90,12 +91,13 @@ public class BankService {
     /**
      * Метод реализует передачу средств из поля amount
      * между аккаунтами, найденным по входящим полям :
-     * @param srcPassport - паспорт источника передачи
-     * @param srcRequisite - реквизиты аккаунта источника
-     * @param destPassport - паспорт приемника
+     *
+     * @param srcPassport   - паспорт источника передачи
+     * @param srcRequisite  - реквизиты аккаунта источника
+     * @param destPassport  - паспорт приемника
      * @param destRequisite - реквизиты приемника
-     * @param amount - количество единиц передаваемых между аккаунтами ;
-     * и возвращает :
+     * @param amount        - количество единиц передаваемых между аккаунтами ;
+     *                      и возвращает :
      * @return true, если передача состоялась,
      * или false, при отсутсвии входных данных в хранилище или
      * при отсутсвии требуемой суммы на аккаунте источника
