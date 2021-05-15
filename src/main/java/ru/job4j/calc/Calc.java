@@ -65,7 +65,7 @@ public class Calc {
         try {
             s = v.getValidAct();
         } catch (InputErrorException e) {
-            System.out.println("ЭЭЭщкере");
+            System.out.println("Не корректный ввод");
         }
         return actions.get(s);
     }
