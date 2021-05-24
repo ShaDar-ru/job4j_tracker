@@ -20,4 +20,46 @@ public enum RomanNumbers {
     public String getKey() {
         return key;
     }
+
+    public int getArabic(String s) {
+        char[] chars = s.toCharArray();
+        int rsl = 0;
+        int a = 0;
+        int y = 0;
+        for (char c : chars) {
+            switch (c) {
+                case 'I':
+                    a = 1;
+                    break;
+                case 'V':
+                    a = 5;
+                    break;
+                case 'X':
+                    a = 10;
+                    break;
+                case 'L':
+                    a = 50;
+                    break;
+                case 'C':
+                    a = 100;
+                    break;
+                case 'D':
+                    a = 500;
+                    break;
+                case 'M':
+                    a = 1000;
+                    break;
+                default:
+                    break;
+            }
+
+            if (a > y) {
+                a = a - y;
+                rsl = rsl - y;
+            }
+            y = a;
+            rsl = rsl + a;
+        }
+        return rsl;
+    }
 }
