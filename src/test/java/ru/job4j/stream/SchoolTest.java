@@ -14,11 +14,11 @@ import static org.junit.Assert.*;
 public class SchoolTest {
     @Test
     public void whenCollectClassA() {
-        Student a = new Student(30, "Surname1");
-        Student b = new Student(40, "Surname2");
-        Student c = new Student(50, "Surname3");
-        Student d = new Student(60, "Surname4");
-        Student e = new Student(70, "Surname5");
+        Student a = new Student("Surname1", 30);
+        Student b = new Student("Surname2", 40);
+        Student c = new Student("Surname3", 50);
+        Student d = new Student("Surname4", 60);
+        Student e = new Student("Surname5", 70);
         List<Student> students = List.of(a, b, c, d, e);
         School sc = new School();
         Predicate<Student> pr = student -> student.getScore() >= 70;
@@ -30,11 +30,11 @@ public class SchoolTest {
 
     @Test
     public void whenCollectClassB() {
-        Student a = new Student(30, "Surname1");
-        Student b = new Student(40, "Surname2");
-        Student c = new Student(50, "Surname3");
-        Student d = new Student(60, "Surname4");
-        Student e = new Student(70, "Surname5");
+        Student a = new Student("Surname1", 30);
+        Student b = new Student("Surname2", 40);
+        Student c = new Student("Surname3", 50);
+        Student d = new Student("Surname4", 60);
+        Student e = new Student("Surname5", 70);
         List<Student> students = List.of(a, b, c, d, e);
         School sc = new School();
         Predicate<Student> pr = student -> student.getScore() < 70 && student.getScore() >= 50;
@@ -47,11 +47,11 @@ public class SchoolTest {
 
     @Test
     public void whenCollectClassV() {
-        Student a = new Student(30, "Surname1");
-        Student b = new Student(40, "Surname2");
-        Student c = new Student(50, "Surname3");
-        Student d = new Student(60, "Surname4");
-        Student e = new Student(70, "Surname5");
+        Student a = new Student("Surname1", 30);
+        Student b = new Student("Surname2", 40);
+        Student c = new Student("Surname3", 50);
+        Student d = new Student("Surname4", 60);
+        Student e = new Student("Surname5", 70);
         List<Student> students = List.of(a, a, b, c, d, e);
         School sc = new School();
         Predicate<Student> pr = student -> student.getScore() < 50;
