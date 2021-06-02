@@ -1,9 +1,6 @@
 package ru.job4j.bank;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Класс реализует банковские операции
@@ -38,10 +35,10 @@ public class BankService {
      *                 в хранилище.
      */
     public void addAccount(String passport, Account account) {
-        User searchedUser = findByPassport(passport);
-        if (searchedUser != null) {
-            if (!users.get(searchedUser).contains(account)) {
-                users.get(searchedUser).add(account);
+        Optional<User> optUser = findByPassport(passport);
+        if (optUser.isPresent()) {
+            if (!users.get(optUser.get()).contains(account)) {
+                users.get(optUser.get()).add(account);
             }
         }
     }
@@ -57,12 +54,12 @@ public class BankService {
      * из хранилища или null если паспорта
      * нет в хранилище
      */
-    public User findByPassport(String passport) {
-        return users.keySet()
+    public Optional<User> findByPassport(String passport) {
+        return Optional.ofNullable(users.keySet()
                 .stream()
                 .filter(u -> u.getPassport().equals(passport))
                 .findFirst()
-                .orElse(null);
+                .orElse(null));
     }
 
     /**
@@ -77,15 +74,13 @@ public class BankService {
      * либо null
      */
     public Account findByRequisite(String passport, String requisite) {
-        User searchedUser = findByPassport(passport);
-        if (searchedUser != null) {
-            return users.get(searchedUser)
-                    .stream()
-                    .filter(acc -> acc.getRequisite().equals(requisite))
-                    .findFirst()
-                    .orElse(null);
-        }
-        return null;
+        Optional<User> optUser = findByPassport(passport);
+        return optUser.map(user -> users.get(user)
+                .stream()
+                .filter(acc -> acc.getRequisite().equals(requisite))
+                .findFirst()
+                .orElse(null))
+                .orElse(null);
     }
 
     /**

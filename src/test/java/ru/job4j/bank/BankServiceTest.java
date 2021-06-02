@@ -12,7 +12,7 @@ public class BankServiceTest {
         User user = new User("3434", "Petr");
         BankService bank = new BankService();
         bank.addUser(user);
-        assertThat(bank.findByPassport("3434"), is(user));
+        assertThat(bank.findByPassport("3434").get(), is(user));
     }
 
     @Test
@@ -22,7 +22,15 @@ public class BankServiceTest {
         BankService bank = new BankService();
         bank.addUser(user);
         bank.addUser(user2);
-        assertThat(bank.findByPassport("3434"), is(user));
+        assertThat(bank.findByPassport("3434").get(), is(user));
+    }
+
+    @Test
+    public void addInvalidNullUser() {
+        User user = new User("1212", "Leva");
+        BankService bank = new BankService();
+        bank.addUser(user);
+        assertThat(bank.findByPassport("3434").isPresent(), is(false));
     }
 
     @Test
