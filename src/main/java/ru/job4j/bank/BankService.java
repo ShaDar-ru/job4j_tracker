@@ -55,11 +55,10 @@ public class BankService {
      * нет в хранилище
      */
     public Optional<User> findByPassport(String passport) {
-        return Optional.ofNullable(users.keySet()
+        return users.keySet()
                 .stream()
                 .filter(u -> u.getPassport().equals(passport))
-                .findFirst()
-                .orElse(null));
+                .findFirst();
     }
 
     /**
@@ -73,14 +72,12 @@ public class BankService {
      * @return аккаунт, содержащий в себе входящие реквизиты,
      * либо null
      */
-    public Account findByRequisite(String passport, String requisite) {
+    public Optional<Account> findByRequisite(String passport, String requisite) {
         Optional<User> optUser = findByPassport(passport);
-        return optUser.map(user -> users.get(user)
+        return optUser.flatMap(user -> users.get(user)
                 .stream()
                 .filter(acc -> acc.getRequisite().equals(requisite))
-                .findFirst()
-                .orElse(null))
-                .orElse(null);
+                .findFirst());
     }
 
     /**
@@ -99,13 +96,13 @@ public class BankService {
      */
     public boolean transferMoney(String srcPassport, String srcRequisite,
                                  String destPassport, String destRequisite, double amount) {
-        Account srcAcc = findByRequisite(srcPassport, srcRequisite);
-        Account destAcc = findByRequisite(destPassport, destRequisite);
-        if (srcAcc == null || destAcc == null || srcAcc.getBalance() < amount) {
+        Optional<Account> srcAccOpt = findByRequisite(srcPassport, srcRequisite);
+        Optional<Account> destAccOpt = findByRequisite(destPassport, destRequisite);
+        if (srcAccOpt.isEmpty() || destAccOpt.isEmpty() || srcAccOpt.get().getBalance() < amount) {
             return false;
         }
-        srcAcc.setBalance(srcAcc.getBalance() - amount);
-        destAcc.setBalance(destAcc.getBalance() + amount);
+        srcAccOpt.get().setBalance(srcAccOpt.get().getBalance() - amount);
+        destAccOpt.get().setBalance(destAccOpt.get().getBalance() + amount);
         return true;
     }
 
