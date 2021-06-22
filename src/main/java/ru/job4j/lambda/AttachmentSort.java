@@ -7,7 +7,6 @@ import java.util.List;
 /**
  * @author Alex Terentev (ShaDar-ru)
  * @version 1.0
- * @date 06.04.2021
  */
 public class AttachmentSort {
     public static void main(String[] args) {
