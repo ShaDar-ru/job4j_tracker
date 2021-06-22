@@ -6,7 +6,11 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 
 public class EasyStream {
-    private List<Integer> nums = new ArrayList<>();
+    private List<Integer> nums;
+
+    private EasyStream() {
+        this.nums = new ArrayList<>();
+    }
 
     public static EasyStream of(List<Integer> source) {
         var rsl = new EasyStream();
@@ -34,6 +38,6 @@ public class EasyStream {
     }
 
     public List<Integer> collect() {
-        return new ArrayList<>(nums);
+        return new ArrayList<>(this.nums);
     }
 }
