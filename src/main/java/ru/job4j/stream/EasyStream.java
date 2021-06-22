@@ -8,18 +8,16 @@ import java.util.function.Predicate;
 public class EasyStream {
     private List<Integer> nums;
 
-    private EasyStream() {
-        this.nums = new ArrayList<>();
+    private EasyStream(List<Integer> list) {
+        this.nums = list;
     }
 
     public static EasyStream of(List<Integer> source) {
-        var rsl = new EasyStream();
-        rsl.nums.addAll(source);
-        return rsl;
+        return new EasyStream(source);
     }
 
     public EasyStream map(Function<Integer, Integer> fun) {
-        var rsl = new EasyStream();
+        var rsl = new EasyStream(new ArrayList<>());
         for (int i : this.nums) {
             int x = fun.apply(i);
             rsl.nums.add(x);
@@ -28,7 +26,7 @@ public class EasyStream {
     }
 
     public EasyStream filter(Predicate<Integer> fun) {
-        var rsl = new EasyStream();
+        var rsl = new EasyStream(new ArrayList<>());
         for (int i : this.nums) {
             if (fun.test(i)) {
                 rsl.nums.add(i);
