@@ -17,22 +17,22 @@ public class EasyStream {
     }
 
     public EasyStream map(Function<Integer, Integer> fun) {
-        var rsl = new EasyStream(new ArrayList<>());
+        var rsl = new ArrayList<Integer>();
         for (int i : this.nums) {
             int x = fun.apply(i);
-            rsl.nums.add(x);
+            rsl.add(x);
         }
-        return rsl;
+        return new EasyStream(rsl);
     }
 
     public EasyStream filter(Predicate<Integer> fun) {
-        var rsl = new EasyStream(new ArrayList<>());
+        var rsl = new ArrayList<Integer>();
         for (int i : this.nums) {
             if (fun.test(i)) {
-                rsl.nums.add(i);
+                rsl.add(i);
             }
         }
-        return rsl;
+        return new EasyStream(rsl);
     }
 
     public List<Integer> collect() {
